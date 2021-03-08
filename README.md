@@ -5,7 +5,7 @@ The objective of this project was to build machine learning models to predict ho
 
 ### Machine Learning Takeaways
 
-Subsequent to Exploratory Data Analysis, Data Preprocessing and Feature Engineering our data, we apply **Ridge, Lasso, Random Forests Regressor, Gradient Boosting Regressor and XGBoost** machine learning models to this dataset in order to test the strengths and weaknesses of each model on this dataset. Careful hyperparameter tuning of each model produced the following cross-validated negative Root Mean Squared Error scores and Kaggle Scores (lower is better) for each of our models:
+Subsequent to Exploratory Data Analysis, Data Preprocessing, Feature Engineering and Feature Selection on our data, we apply **Ridge, Lasso, Random Forests Regressor, Gradient Boosting Regressor and XGBoost** machine learning models to this dataset in order to test the strengths and weaknesses of each model on this dataset. Careful hyperparameter tuning of each model produced the following cross-validated negative Root Mean Squared Error scores and Kaggle Scores (lower is better) for each of our models:
 
 | Model             | Variables Used | CV Neg RMSE | Kaggle Score |   
 |-------------------|----------------|-------------|--------------|
@@ -14,7 +14,7 @@ Subsequent to Exploratory Data Analysis, Data Preprocessing and Feature Engineer
 | Gradient Boosting | All variables  | -548k       | 0.1367       |   
 | Random Forest     | All variables  | -714k       | 0.1395       |   
 | XGBoost           | 151            | -687k       | 0.1388       |   
-|                   |                |             |              |   
+                                                         
 
 We proceed to stack these 'Level 0' models in to a 'Level 1' model trained on top of the house price predictions outputted by our Ridge, Lasso, RandomForests, XGBoost, and Gradient Boosting Models. This stacked 'meta-model' outperformed all individual model components and yielded a final Kaggle score of **0.13072**.
 
