@@ -46,3 +46,6 @@ Given our stacked Level 1 model trains on the predictions of the Level 0 models,
     *Sellers*: Consider building an open porch to increase house value
     
     *Buyers*: Consider building an open porch yourself to save money if cheaper in the aggregate
+
+
+[Link to Full Blog Post](https://nycdatascience.com/blog/student-works/machine-learning-predicting-house-prices-in-ames-ia/)  
