@@ -30,15 +30,15 @@ Given our stacked Level 1 model trains on the predictions of the Level 0 models,
 
 1. **Random Forests**: OverallQual, TotalArea, Area1stArea2nd, LotFrontage are most important
 
-*Sellers*: Consider improving fireplace quality to fetch higher prices
-*Buyers*: Consider buying houses with no garage and building one yourself if cheaper in the aggregate
+    *Sellers*: Consider improving fireplace quality to fetch higher prices
+    *Buyers*: Consider buying houses with no garage and building one yourself if cheaper in the aggregate
 
 1. **Gradient Boosting Regressor**: OverallQual, LotArea, BsmtQual & YearBuilt are most important
 
-*Sellers*: Consider investing in Central Air conditioning to fetch higher prices
-*Buyers*: Consider buying older houses and remodeling these yourself
+    *Sellers*: Consider investing in Central Air conditioning to fetch higher prices
+    *Buyers*: Consider buying older houses and remodeling these yourself
 
 1. **Linear Models**: LotArea, Neighborhood variables are most important
 
-*Sellers*: Consider building an open porch to increase house value
-*Buyers*: Consider building an open porch yourself to save money if cheaper in the aggregate
+    *Sellers*: Consider building an open porch to increase house value
+    *Buyers*: Consider building an open porch yourself to save money if cheaper in the aggregate
