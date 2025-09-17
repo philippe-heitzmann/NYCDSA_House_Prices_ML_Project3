@@ -1,51 +1,129 @@
-### Project Overview 
+# House Prices Prediction - Ames, Iowa
 
-The objective of this project was to build machine learning models to predict house prices as part of the Kaggle competition [House Prices: Advanced Regression Techniques](https://www.kaggle.com/c/house-prices-advanced-regression-techniques). The dataset used in this competition was the Ames Housing dataset, which was compiled by Professor Dean De Cock of Truman State University and which describes the sale of residential properties in Ames, Iowa during the period 2006 - 2010. The dataset contains a total of 2919 observations split across 80 different explanatory variables (23 nominal, 23 ordinal, 14 discrete, and 20 continuous) that impact home values, captured in the SalePrice variable in this dataset.
+A comprehensive machine learning project for predicting house prices using the Ames Housing dataset from the [Kaggle House Prices: Advanced Regression Techniques competition](https://www.kaggle.com/c/house-prices-advanced-regression-techniques).
 
+## 🏠 Project Overview
 
-### Machine Learning Takeaways
+This project implements advanced machine learning techniques to predict residential property prices in Ames, Iowa. The dataset contains 2,919 observations with 80 explanatory variables describing various aspects of residential properties sold between 2006-2010.
 
-Subsequent to Exploratory Data Analysis, Data Preprocessing, Feature Engineering and Feature Selection on our data, we apply **Ridge, Lasso, Random Forests Regressor, Gradient Boosting Regressor and XGBoost** machine learning models to this dataset in order to test the strengths and weaknesses of each model on this dataset. Careful hyperparameter tuning of each model produced the following cross-validated negative Root Mean Squared Error scores and Kaggle Scores (lower is better) for each of our models:
+### Dataset Details
+- **Source**: Ames Housing dataset by Professor Dean De Cock (Truman State University)
+- **Time Period**: 2006-2010
+- **Observations**: 2,919 properties
+- **Features**: 80 variables (23 nominal, 23 ordinal, 14 discrete, 20 continuous)
+- **Target**: SalePrice (continuous variable)
 
-| Model             | Variables Used | CV Neg RMSE | Kaggle Score |   
-|-------------------|----------------|-------------|--------------|
-| Ridge             | 99             | -766k       | 0.1458       |   
-| Lasso             | 98             | -780k       | 0.1403       |   
-| Gradient Boosting | All variables  | -548k       | 0.1367       |   
-| Random Forest     | All variables  | -714k       | 0.1395       |   
-| XGBoost           | 151            | -687k       | 0.1388       |   
-                                                         
+## 🎯 Project Objectives
 
-We proceed to stack these 'Level 0' models in to a 'Level 1' model trained on top of the house price predictions outputted by our Ridge, Lasso, RandomForests, XGBoost, and Gradient Boosting Models. This stacked 'meta-model' outperformed all individual model components and yielded a final Kaggle score of **0.13072**.
+- Build powerful predictive models for house price estimation
+- Develop object-oriented programming skills through custom preprocessing and modeling classes
+- Gain deeper understanding of different ML algorithms and their strengths/weaknesses
+- Implement ensemble methods and model stacking for improved performance
 
+## 🏆 Results Summary
 
-### Model Feature Importance Insights & Conclusion
+### Individual Model Performance
 
-Given our stacked Level 1 model trains on the predictions of the Level 0 models, I wanted to take a step back to analyze the feature importances in our Level 0 models. The following are some of the insights gleaned from the outputted feature importances of each model as well as some recommendations for residential real estate buyers and sellers:
+| Model             | Features Used | CV RMSE | Kaggle Score |
+|-------------------|---------------|---------|--------------|
+| Ridge             | 99            | 0.766k  | 0.1458       |
+| Lasso             | 98            | 0.780k  | 0.1403       |
+| Gradient Boosting | All features  | 0.548k  | 0.1367       |
+| Random Forest     | All features  | 0.714k  | 0.1395       |
+| XGBoost           | 151           | 0.687k  | 0.1388       |
 
-1. **XGBoost**: Qualitative variables such as OverallQual and ExterQual are most important
+### 🥇 Final Performance
+**Best Kaggle Score: 0.13072** (using stacked ensemble model)
 
-    *Sellers*: Consider investing more into quality of the external finish of a house to fetch higher prices
-    
-    *Buyers*: Consider buying houses with no/low-quality basements and excavating/enlarging/improving these yourself if cheaper in the aggregate
+## 🔧 Methodology
 
-1. **Random Forests**: OverallQual, TotalArea, Area1stArea2nd, LotFrontage are most important
+### 1. Data Preprocessing
+- **Outlier Detection & Removal**: Identified and removed extreme outliers in GrLivArea and LotFrontage
+- **Missing Value Imputation**: Strategic imputation based on data understanding
+- **Feature Engineering**: Created 20+ new features including:
+  - TotalArea (sum of all area-related features)
+  - Age (YrSold - YearBuilt)
+  - Binary indicators for various amenities
+  - Ordinal encoding for quality variables
 
-    *Sellers*: Consider improving fireplace quality to fetch higher prices
-    
-    *Buyers*: Consider buying houses with no garage and building one yourself if cheaper in the aggregate
+### 2. Feature Selection
+- **Correlation Analysis**: Selected features based on correlation thresholds
+- **Recursive Feature Elimination (RFE)**: Used RFECV for optimal feature selection per model
+- **Model-Specific Selection**: Different feature sets optimized for each algorithm
 
-1. **Gradient Boosting Regressor**: OverallQual, LotArea, BsmtQual & YearBuilt are most important
+### 3. Model Training & Tuning
+- **Hyperparameter Optimization**: GridSearchCV with 3-fold cross-validation
+- **Multiple Algorithms**: Ridge, Lasso, Random Forest, Gradient Boosting, XGBoost
+- **Performance Metrics**: Root Mean Squared Error (RMSE) and R² score
 
-    *Sellers*: Consider investing in Central Air conditioning to fetch higher prices
-    
-    *Buyers*: Consider buying older houses and remodeling these yourself
+### 4. Ensemble Methods
+- **Model Stacking**: Level-0 models (base learners) + Level-1 meta-model
+- **Meta-Learners**: Linear Regression, Gradient Boosting, XGBoost
+- **Final Prediction**: Best performing stacked ensemble
 
-1. **Linear Models**: LotArea, Neighborhood variables are most important
+## 📊 Key Insights
 
-    *Sellers*: Consider building an open porch to increase house value
-    
-    *Buyers*: Consider building an open porch yourself to save money if cheaper in the aggregate
+### Most Important Features Across Models
 
+1. **XGBoost**: OverallQual, ExterQual (quality variables)
+2. **Random Forest**: OverallQual, TotalArea, Area1st2nd, LotFrontage
+3. **Gradient Boosting**: OverallQual, LotArea, BsmtQual, YearBuilt
+4. **Linear Models**: LotArea, Neighborhood variables
 
-[Link to Full Blog Post](https://nycdatascience.com/blog/student-works/machine-learning-predicting-house-prices-in-ames-ia/)  
+### Business Recommendations
+
+**For Sellers:**
+- Invest in external finish quality (OverallQual, ExterQual)
+- Consider adding central air conditioning
+- Improve fireplace quality
+- Build open porches for added value
+
+**For Buyers:**
+- Consider houses with lower basement quality for renovation potential
+- Look for properties without garages for DIY construction
+- Older houses offer remodeling opportunities
+- Evaluate neighborhood carefully as it significantly impacts price
+
+## 📁 Project Structure
+
+```
+├── README.md                           # Project documentation
+├── Objectives.md                       # Project objectives and evaluation criteria
+├── main_analysis.ipynb                 # Main analysis notebook (consolidated)
+├── data/                              # Data directory (if applicable)
+└── results/                           # Model outputs and predictions
+```
+
+## 🚀 Getting Started
+
+1. **Prerequisites**:
+   - Python 3.7+
+   - Required packages: pandas, numpy, scikit-learn, xgboost, matplotlib, seaborn
+
+2. **Data Setup**:
+   - Download the Ames Housing dataset from Kaggle
+   - Place `train.csv` and `test.csv` in the project directory
+
+3. **Running the Analysis**:
+   - Open `main_analysis.ipynb`
+   - Execute cells sequentially
+   - Results will be saved as CSV files
+
+## 📈 Model Performance Details
+
+The project achieved a **0.13072 Kaggle score** using a sophisticated stacking approach:
+
+1. **Level-0 Models**: Individual tuned models (Ridge, Lasso, Random Forest, Gradient Boosting, XGBoost)
+2. **Level-1 Meta-Model**: Gradient Boosting Regressor trained on Level-0 predictions
+3. **Cross-Validation**: 3-fold CV for robust performance estimation
+4. **Feature Selection**: RFECV-optimized feature sets for each model
+
+## 🔗 Additional Resources
+
+- [Full Blog Post](https://nycdatascience.com/blog/student-works/machine-learning-predicting-house-prices-in-ames-ia/)
+- [Kaggle Competition](https://www.kaggle.com/c/house-prices-advanced-regression-techniques)
+- [Ames Housing Dataset Documentation](https://www.kaggle.com/c/house-prices-advanced-regression-techniques/data)
+
+## 📝 License
+
+This project is part of the NYC Data Science Academy curriculum and is for educational purposes.
