@@ -2,7 +2,7 @@
 
 A comprehensive machine learning project for predicting house prices using the Ames Housing dataset from the [Kaggle House Prices: Advanced Regression Techniques competition](https://www.kaggle.com/c/house-prices-advanced-regression-techniques).
 
-## 🏠 Project Overview
+## Project Overview
 
 This project implements advanced machine learning techniques to predict residential property prices in Ames, Iowa. The dataset contains 2,919 observations with 80 explanatory variables describing various aspects of residential properties sold between 2006-2010.
 
@@ -13,14 +13,14 @@ This project implements advanced machine learning techniques to predict resident
 - **Features**: 80 variables (23 nominal, 23 ordinal, 14 discrete, 20 continuous)
 - **Target**: SalePrice (continuous variable)
 
-## 🎯 Project Objectives
+## Project Objectives
 
 - Build powerful predictive models for house price estimation
 - Develop object-oriented programming skills through custom preprocessing and modeling classes
 - Gain deeper understanding of different ML algorithms and their strengths/weaknesses
 - Implement ensemble methods and model stacking for improved performance
 
-## 🏆 Results Summary
+## Results Summary
 
 ### Individual Model Performance
 
@@ -32,7 +32,7 @@ This project implements advanced machine learning techniques to predict resident
 | Random Forest     | All features  | 0.714k  | 0.1395       |
 | XGBoost           | 151           | 0.687k  | 0.1388       |
 
-### 🥇 Final Performance
+### Final Performance
 **Best Kaggle Score: 0.13072** (using stacked ensemble model)
 
 ## 🔧 Methodology
@@ -61,7 +61,7 @@ This project implements advanced machine learning techniques to predict resident
 - **Meta-Learners**: Linear Regression, Gradient Boosting, XGBoost
 - **Final Prediction**: Best performing stacked ensemble
 
-## 📊 Key Insights
+## Key Insights
 
 ### Most Important Features Across Models
 
@@ -94,7 +94,9 @@ This project implements advanced machine learning techniques to predict resident
 └── results/                           # Model outputs and predictions
 ```
 
-## 🚀 Getting Started
+## Getting Started
+
+### Option 1: Local Python Environment
 
 1. **Prerequisites**:
    - Python 3.7+
@@ -109,7 +111,35 @@ This project implements advanced machine learning techniques to predict resident
    - Execute cells sequentially
    - Results will be saved as CSV files
 
-## 📈 Model Performance Details
+### Option 2: Docker Environment
+
+1. **Prerequisites**:
+   - Docker installed on your system
+   - Ames Housing dataset downloaded from Kaggle
+
+2. **Data Setup**:
+   - Place `train.csv` and `test.csv` in the project directory
+
+3. **Build and Run Docker Container**:
+   ```bash
+   # Build the Docker image
+   docker build -t house-prices-ml .
+   
+   # Run the container with Jupyter notebook
+   docker run -p 8888:8888 -v $(pwd):/usr/src/app house-prices-ml
+   ```
+
+4. **Access Jupyter Notebook**:
+   - Open your browser and go to `http://localhost:8888`
+   - Use the token provided in the terminal output to access the notebook
+   - Open `main_analysis.ipynb` and execute cells sequentially
+   - Results will be saved as CSV files in the project directory
+
+5. **Stop the Container**:
+   - Press `Ctrl+C` in the terminal to stop the container
+   - Or run `docker stop <container_id>` in another terminal
+
+## Model Performance Details
 
 The project achieved a **0.13072 Kaggle score** using a sophisticated stacking approach:
 
@@ -124,6 +154,6 @@ The project achieved a **0.13072 Kaggle score** using a sophisticated stacking a
 - [Kaggle Competition](https://www.kaggle.com/c/house-prices-advanced-regression-techniques)
 - [Ames Housing Dataset Documentation](https://www.kaggle.com/c/house-prices-advanced-regression-techniques/data)
 
-## 📝 License
+## License
 
 This project is part of the NYC Data Science Academy curriculum and is for educational purposes.
